@@ -1,18 +1,18 @@
   
-        // Mock data for demonstration
-        let currentUser = null;
-        let activities = [];
-        let uploadedFiles = [];
-        let editMode = false;
-        let currentStep = 1;
-        let beneficiaryCounter = 1;
-        let documentCounter = 1;
+// Mock data for demonstration
+let currentUser = null;
+let activities = [];
+let uploadedFiles = [];
+let editMode = false;
+let currentStep = 1;
+let beneficiaryCounter = 1;
+let documentCounter = 1;
 
-        // DOM Elements
-        const loginPage = document.getElementById('login-page');
-        const dashboardPage = document.getElementById('dashboard-page');
-        const activityFormPage = document.getElementById('activity-form-page');
-        const activitiesListPage = document.getElementById('activities-list-page');
+// DOM Elements
+const loginPage = document.getElementById('login-page');
+const dashboardPage = document.getElementById('dashboard-page');
+const activityFormPage = document.getElementById('activity-form-page');
+const activitiesListPage = document.getElementById('activities-list-page');
 
         // Form steps
 const formStep1 = document.getElementById('form-step-1');
@@ -135,6 +135,7 @@ function logout() {
 }
 
 function showDashboard() {
+    console.log("showDashboard")
     activityFormPage.classList.add('hidden');
     activitiesListPage.classList.add('hidden');
     dashboardPage.classList.remove('hidden');
@@ -144,6 +145,7 @@ function showDashboard() {
 }
 
 function showActivityForm() {
+    console.log("showActivityForm")
     editMode = false;
     document.getElementById('form-title').textContent = 'Add New Activity';
     resetForm();
@@ -160,6 +162,7 @@ function showActivityForm() {
 }
 
 function showActivitiesList() {
+    console.log("showActivitiesList");
     dashboardPage.classList.add('hidden');
     activityFormPage.classList.add('hidden');
     activitiesListPage.classList.remove('hidden');
@@ -181,6 +184,7 @@ function resetForm() {
 }
 
 function goToStep(step) {
+    console.log("goToStep: ",step);
     // Hide all steps
     formStep1.classList.add('hidden');
     formStep2.classList.add('hidden');
@@ -285,7 +289,7 @@ function getCurrentLocation() {
 }
 
 function saveFormData() {
-    
+    console.log("saveFormData");
     // This function saves form data between steps
     // In a real app, you might want to validate data before proceeding
 
@@ -1111,7 +1115,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fix for missing back-to-dashboard buttons
     const backToDashboardBtns = document.querySelectorAll('.btn-secondary');
     backToDashboardBtns.forEach(btn => {
-        if (btn.textContent.includes('Back') || btn.textContent.includes('Cancel')) {
+        if (btn.textContent.includes('Cancel')) {
             btn.addEventListener('click', showDashboard);
         }
     });
@@ -1188,22 +1192,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Fix 3: Correct back button behavior in form steps
-    const backToStep1Btn = document.getElementById('back-to-step-1');
-    if (backToStep1Btn) {
-        backToStep1Btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            goToStep(1);
-        });
-    }
+    // // Fix 3: Correct back button behavior in form steps
+    // const backToStep1Btn = document.getElementById('back-to-step-1');
+    // if (backToStep1Btn) {
+    //     backToStep1Btn.addEventListener('click', function(e) {
+    //         e.preventDefault();
+    //         goToStep(1);
+    //     });
+    // }
     
-    const backToStep2Btn = document.getElementById('back-to-step-2');
-    if (backToStep2Btn) {
-        backToStep2Btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            goToStep(2);
-        });
-    }
+    // const backToStep2Btn = document.getElementById('back-to-step-2');
+    // if (backToStep2Btn) {
+    //     backToStep2Btn.addEventListener('click', function(e) {
+    //         e.preventDefault();
+    //         goToStep(2);
+    //     });
+    // }
     
     // Fix 4: Ensure form submission works correctly
     const activityForm = document.getElementById('activity-form');
@@ -1287,6 +1291,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Redirect to dashboard after a delay
             setTimeout(() => {
+                console.log("time out")
                 resetForm();
                 activityFormPage.classList.add('hidden');
                 dashboardPage.classList.remove('hidden');
